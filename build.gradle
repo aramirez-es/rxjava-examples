@@ -1,4 +1,6 @@
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'Main'
 
 sourceCompatibility = 1.8
 
@@ -11,4 +13,8 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+run {
+    systemProperty "example", System.getProperty("example")
 }
