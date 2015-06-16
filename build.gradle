@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    compile 'io.reactivex:rxjava:1.0.12'
 }
 
 task wrapper(type: Wrapper) {
