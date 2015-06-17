@@ -13,8 +13,8 @@ public class Main {
         }
     }
     public static void main(String[] args) {
-        String exampleToExecute = System.getProperty("example", "example1").toUpperCase();
         try {
+            String exampleToExecute = System.getProperty("example", "example1").toUpperCase();
             Class toExecute = Examples.valueOf(exampleToExecute).classToExecute;
             ((ExecutableExample) toExecute.getConstructor().newInstance()).execute();
         } catch (Exception e) {
