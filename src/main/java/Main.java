@@ -18,7 +18,7 @@ public class Main {
             Class toExecute = Examples.valueOf(exampleToExecute).classToExecute;
             ((ExecutableExample) toExecute.getConstructor().newInstance()).execute();
         } catch (Exception e) {
-            System.err.println("Don troll, mother f*cker!");
+            System.err.println("Don't troll, mother f*cker!");
         }
     }
 }
