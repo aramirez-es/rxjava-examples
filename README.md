@@ -13,3 +13,6 @@ Create an Observable from scratch, by using create operator and then by calling 
 
 ### Example 2
 Like Example 1 but using lambdas instead.
+
+### Example 3
+Defer observable: do not create the Observable until the observer subscribes, and create a fresh Observable for each observer.
