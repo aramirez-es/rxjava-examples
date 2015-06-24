@@ -13,3 +13,6 @@ Create an Observable from scratch, by using create operator and then by calling 
 
 ### Example 2
 Like Example 1 but using lambdas instead.
+
+### Example 4
+Create an Observable that emits no items but terminates normally.
