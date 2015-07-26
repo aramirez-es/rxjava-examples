@@ -9,63 +9,20 @@ import java.util.concurrent.TimeUnit;
 public class ObservableDefer implements ExecutableExample
 {
     public void execute() {
-//        Observable<Long> notDeferredObservable = Observable.interval(1L, TimeUnit.SECONDS);
-        Observable<Integer> notDeferredObservable = Observable.create(observer -> {
-            System.out.println("Creating a non defer observable.");
+        Person person = new Person();
 
-//            observer.onNext((new Random()).nextInt());
-            for (int i = 0; i < 10; i++) {
-                observer.onNext(i);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {}
-            }
-            observer.onCompleted();
-        });
+        Observable<String> justObservable = person.justObservable();
+        Observable<String> deferredJustObservable = person.deferredJustObservable();
+        Observable<String> createdObservable = person.createObservable();
 
-        Observable<Integer> deferredObservable = Observable.defer(
-            () -> {
-                System.out.println("Creating a defer observable.");
-                return Observable.create(observer -> {
-                    for (int i = 0; i < 10; i++) {
-                        observer.onNext(i);
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {}
-                    }
-                    observer.onCompleted();
-                });
-            }
-        );
+        /**
+         * Since we set the name of the person after the observables were created,
+         * only the 'deferred' and 'created' version have the name "John" emitted to subscribers.
+         */
+        person.setName("John");
 
-        System.out.println("Subscribe to a non deferred observable");
-        notDeferredObservable.subscribe(item -> {
-            System.out.println("Subscriber1: " + item);
-            System.out.println("");
-        });
-
-        System.out.println("Subscribe to a deferred observable");
-        deferredObservable.subscribe(item -> {
-            System.out.println("Deferred Subscriber1: " + item);
-            System.out.println("");
-        });
-
-
-        try {
-            System.out.println("Awaiting for 5 seconds...");
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {}
-
-        System.out.println("Subscribe to a non deferred observable");
-        notDeferredObservable.subscribe(item -> {
-            System.out.println("Subscriber2: " + item);
-            System.out.println("");
-        });
-
-        System.out.println("Subscribe to a deferred observable");
-        deferredObservable.subscribe(item -> {
-            System.out.println("Deferred Subscriber2: " + item);
-            System.out.println("");
-        });
+        justObservable.subscribe(s -> System.out.println("Just: " + s));
+        deferredJustObservable.subscribe(s -> System.out.println("Deferred: " + s));
+        createdObservable.subscribe(s -> System.out.println("Create: " + s));
     }
 }
