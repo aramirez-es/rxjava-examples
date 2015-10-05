@@ -4,6 +4,7 @@ public class Main {
     private enum Examples {
         EXAMPLE1 (example1.ObservableCreate.class),
         EXAMPLE2 (example2.ObservableCreateLambda.class),
+        EXAMPLE_EVENT_DISPATCHER (example_event_dispatcher.EventDispatcher.class)
         ;
 
         private Class classToExecute = example1.ObservableCreate.class;
