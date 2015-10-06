@@ -4,7 +4,7 @@ public class Main {
     private enum Examples {
         EXAMPLE1 (example1.ObservableCreate.class),
         EXAMPLE2 (example2.ObservableCreateLambda.class),
-        EXAMPLE_EVENT_DISPATCHER (example_event_dispatcher.EventDispatcher.class)
+        EXAMPLE_EVENT_DISPATCHER (example_event_dispatcher.EventDispatcherExample.class)
         ;
 
         private Class classToExecute = example1.ObservableCreate.class;
@@ -19,6 +19,7 @@ public class Main {
             Class toExecute = Examples.valueOf(exampleToExecute).classToExecute;
             ((ExecutableExample) toExecute.getConstructor().newInstance()).execute();
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             System.err.println("Don't troll, mother f*cker!");
         }
     }
